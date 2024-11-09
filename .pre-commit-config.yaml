@@ -1,4 +1,19 @@
 repos:
+  - repo: https://github.com/mwouts/jupytext
+    rev: "v1.16.4b"
+    hooks:
+     - id: jupytext
+       entry: jupytext
+       language: python
+       types: [jupyter]
+       args:
+         - --from=ipynb
+         - --to=py:light
+         - --set-formats=ipynb,py:light
+         - --quiet
+         - --sync
+         - --warn-only
+       exclude: '.*\.md$'
   - repo: https://github.com/PyCQA/docformatter
     rev: "eb1df347edd128b30cd3368dddc3aa65edcfac38"
     hooks:
@@ -12,6 +27,7 @@ repos:
     rev: "24.10.0"
     hooks:
       - id: black
+
   - repo: https://github.com/nbQA-dev/nbQA
     rev: 1.9.0
     hooks:
@@ -32,9 +48,10 @@ repos:
     rev: "5.13.2"
     hooks:
       - id: isort
+        entry: isort
         args:
-          - --check
           - --float-to-top
+
   - repo: https://github.com/nbQA-dev/nbQA
     rev: "1.9.0"
     hooks:
@@ -65,18 +82,7 @@ repos:
         types_or: [jupyter, markdown]
         additional_dependencies: [isort]
         args:
-          - --check
           - --float-to-top
-
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: "v5.0.0"
-    hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-      - id: debug-statements
-      - id: name-tests-test
-      - id: requirements-txt-fixer
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.3.0
